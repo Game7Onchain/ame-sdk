@@ -1,0 +1,22 @@
+{
+  "name": "ame-sdk",
+  "version": "0.1.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HelloRickey/ame-sdk.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HelloRickey/ame-sdk/issues"
+  },
+  "homepage": "https://github.com/HelloRickey/ame-sdk#readme",
+  "dependencies": {
+    "web3": "^4.5.0"
+  }
+}
