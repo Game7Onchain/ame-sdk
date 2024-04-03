@@ -1,30 +1,7 @@
-## ame-sdk
-ame-sdk is a Javascript SDK used to interact with [Ame Network]("https://ame.network/")
+import dotenv from 'dotenv/config'
+import Ame from "./src/index"
+async function ameTest(){
 
-### Quick start
-Install with npm:
-```
-npm i ame-sdk
-```
-Install with yarn:
-```
-yarn add ame-sdk
-```
-Install dependencies
-```
-npm i
-```
-Create an .env file in the root directory
-```
-PRIVATE_KEY=<Your Private Key>
-```
-Run test
-```
-yarn test
-```
-
-### Example
-```javascript
     const account="0xa0ee7a142d267c1f36714e4a8f75612f20a79720"
     const ameWorldAddress="0xeD1DB453C3156Ff3155a97AD217b3087D5Dc5f6E"
     const componentAddress="0x0C8E79F3534B00D9a3D4a856B665Bf4eBC22f2ba"
@@ -71,4 +48,6 @@ yarn test
     ame.web3.eth.accounts.wallet.add(process.env.PRIVATE_KEY)
     var putResult=await ame.sendPutRequestWeb3js(componentAddress,"updateUserName",encodePutParams,account);
     console.log("putResult",putResult)
-```
+}
+
+ameTest();

@@ -8,6 +8,7 @@ class AmeLib {
     this.AmeWorld = new this.web3.eth.Contract(AmeWorldABI, ameAddress);
   }
 
+  //Query the details of a component
   async queryComponent(_componentAddress) {
     var componentContract = new this.web3.eth.Contract(
       AmeComponentABI,
@@ -43,6 +44,7 @@ class AmeLib {
     return componentObj;
   }
 
+  //Query the components owned by an address
   async queryAccount(_accountAddress) {
     var components = await this.AmeWorld.methods
       .getComponents(_accountAddress)
@@ -56,6 +58,7 @@ class AmeLib {
     return componentObjs;
   }
 
+  //Send Get request
   async sendGetRequest(_componentAddress, _methodName, _requestParams) {
     var componentContract = new this.web3.eth.Contract(
       AmeComponentABI,
@@ -67,19 +70,27 @@ class AmeLib {
     return responseData;
   }
 
+  //Send Post request
   async sendPostRequestWeb3js(
     _componentAddress,
     _methodName,
     _requestParams,
     _from
   ) {
+
     var componentContract = new this.web3.eth.Contract(
       AmeComponentABI,
       _componentAddress
     );
+
+    const gasPrice = await this.web3.eth.getGasPrice();
+    const gas = await componentContract.methods
+      .post(_methodName, _requestParams)
+      .estimateGas({ from: _from });
+
     var txResult = await componentContract.methods
       .post(_methodName, _requestParams)
-      .send({ from: _from })
+      .send({ from: _from,gasPrice,gas })
       .on("transactionHash", function (hash) {})
       .on("receipt", function (receipt) {
         return receipt;
@@ -88,6 +99,7 @@ class AmeLib {
     return txResult;
   }
 
+  //Send Put request
   async sendPutRequestWeb3js(
     _componentAddress,
     _methodName,
@@ -98,9 +110,14 @@ class AmeLib {
       AmeComponentABI,
       _componentAddress
     );
+    const gasPrice = await this.web3.eth.getGasPrice();
+    const gas = await componentContract.methods
+      .put(_methodName, _requestParams)
+      .estimateGas({ from: _from });
+
     var txResult = await componentContract.methods
       .put(_methodName, _requestParams)
-      .send({ from: _from })
+      .send({ from: _from ,gasPrice,gas})
       .on("transactionHash", function (hash) {})
       .on("receipt", function (receipt) {
         return receipt;
@@ -109,11 +126,13 @@ class AmeLib {
     return txResult;
   }
 
+  //Check if an address is registered
   async isRegistered(_from) {
     var isRegistered = await this.AmeWorld.methods.isRegistered(_from).call();
     return isRegistered;
   }
 
+  //Check if an address owns a component
   async hasComponent(_from, _componentAddress) {
     var hasComponent = await this.AmeWorld.methods
       .hasComponent(_from, _componentAddress)
@@ -121,6 +140,7 @@ class AmeLib {
     return hasComponent;
   }
 
+  //Register to an Ame World
   async registerAmeWorld(_from) {
     console.log(_from);
     var txResult = await this.AmeWorld.methods
@@ -134,6 +154,7 @@ class AmeLib {
     return txResult;
   }
 
+  //Add some components
   async addComponents(_from, _componentsAddress) {
     var txResult = await this.AmeWorld.methods
       .addComponents(_componentsAddress)
@@ -146,6 +167,7 @@ class AmeLib {
     return txResult;
   }
 
+  //Remove some components
   async removeComponents(_from, _componentsAddress) {
     var txResult = await this.AmeWorld.methods
       .removeComponents(_componentsAddress)
@@ -158,6 +180,7 @@ class AmeLib {
     return txResult;
   }
 
+  //Encode request parameters
   encodeRequestParams(_methodRequestParamsType, _requestParamValue) {
     var reqParamsEncode = this.web3.eth.abi.encodeParameters(
       _methodRequestParamsType,
@@ -166,6 +189,7 @@ class AmeLib {
     return reqParamsEncode;
   }
 
+  //Decode response data
   decodeResponseData(_methodResponseType, _resDataEncode) {
     var resDataDecode = this.web3.eth.abi.decodeParameters(
       _methodResponseType,

@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "module": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "babel-node test.js",
     "build": "babel src/AmeLib.js --out-dir lib"
   },
   "repository": {
@@ -19,11 +19,13 @@
   },
   "homepage": "https://github.com/HelloRickey/ame-sdk#readme",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "web3": "^4.7.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.1",
     "@babel/core": "^7.24.3",
+    "@babel/node": "^7.23.9",
     "@babel/preset-env": "^7.24.3"
   }
 }
