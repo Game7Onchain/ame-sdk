@@ -1,5 +1,5 @@
 ## ame-sdk
-ame-sdk is a Javascript SDK used to interact with [Ame Network]("https://ame.network/")
+ame-sdk is a Javascript SDK used to interact with [Ame Network](https://ame.network/)
 
 ### Quick start
 Install with npm:

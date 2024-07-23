@@ -75,9 +75,9 @@ class AmeLib {
     _componentAddress,
     _methodName,
     _requestParams,
-    _from
+    _from,
+    _value
   ) {
-
     var componentContract = new this.web3.eth.Contract(
       AmeComponentABI,
       _componentAddress
@@ -90,7 +90,7 @@ class AmeLib {
 
     var txResult = await componentContract.methods
       .post(_methodName, _requestParams)
-      .send({ from: _from,gasPrice,gas })
+      .send({ from: _from, gasPrice, gas, value: _value })
       .on("transactionHash", function (hash) {})
       .on("receipt", function (receipt) {
         return receipt;
@@ -104,7 +104,8 @@ class AmeLib {
     _componentAddress,
     _methodName,
     _requestParams,
-    _from
+    _from,
+    _value
   ) {
     var componentContract = new this.web3.eth.Contract(
       AmeComponentABI,
@@ -117,7 +118,7 @@ class AmeLib {
 
     var txResult = await componentContract.methods
       .put(_methodName, _requestParams)
-      .send({ from: _from ,gasPrice,gas})
+      .send({ from: _from, gasPrice, gas ,value: _value})
       .on("transactionHash", function (hash) {})
       .on("receipt", function (receipt) {
         return receipt;

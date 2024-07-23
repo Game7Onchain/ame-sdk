@@ -3,8 +3,8 @@ import Ame from "./src/index"
 async function ameTest(){
 
     const account="0xa0ee7a142d267c1f36714e4a8f75612f20a79720"
-    const ameWorldAddress="0xeD1DB453C3156Ff3155a97AD217b3087D5Dc5f6E"
-    const componentAddress="0x0C8E79F3534B00D9a3D4a856B665Bf4eBC22f2ba"
+    const ameWorldAddress="0xb19b36b1456E65E3A6D514D3F715f204BD59f431"
+    const componentAddress="0xD18E3F31bD50B5c6e4cC740CB9Ca637F6eCC2944"
 
     //Initialize Ame World
     var ame=new Ame("http://127.0.0.1:8545",ameWorldAddress);
@@ -40,13 +40,13 @@ async function ameTest(){
     //Send Post request
     var encodeSendParams=ame.encodeRequestParams(['string', 'uint256'],['alice', '100']);
     ame.web3.eth.accounts.wallet.add(process.env.PRIVATE_KEY)
-    var postResult=await ame.sendPostRequestWeb3js(componentAddress,"createUser",encodeSendParams,account);
+    var postResult=await ame.sendPostRequestWeb3js(componentAddress,"createUser",encodeSendParams,account,0);
     console.log("postResult",postResult)
 
     //Send Put request
     var encodePutParams=ame.encodeRequestParams(['address', 'string'],[account, 'Bob']);
     ame.web3.eth.accounts.wallet.add(process.env.PRIVATE_KEY)
-    var putResult=await ame.sendPutRequestWeb3js(componentAddress,"updateUserName",encodePutParams,account);
+    var putResult=await ame.sendPutRequestWeb3js(componentAddress,"updateUserName",encodePutParams,account,0);
     console.log("putResult",putResult)
 }
 
