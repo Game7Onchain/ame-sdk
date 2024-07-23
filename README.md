@@ -63,12 +63,12 @@ yarn test
     //Send Post request
     var encodeSendParams=ame.encodeRequestParams(['string', 'uint256'],['alice', '100']);
     ame.web3.eth.accounts.wallet.add(process.env.PRIVATE_KEY)
-    var postResult=await ame.sendPostRequestWeb3js(componentAddress,"createUser",encodeSendParams,account);
+    var postResult=await ame.sendPostRequestWeb3js(componentAddress,"createUser",encodeSendParams,account,0);
     console.log("postResult",postResult)
 
     //Send Put request
     var encodePutParams=ame.encodeRequestParams(['address', 'string'],[account, 'Bob']);
     ame.web3.eth.accounts.wallet.add(process.env.PRIVATE_KEY)
-    var putResult=await ame.sendPutRequestWeb3js(componentAddress,"updateUserName",encodePutParams,account);
+    var putResult=await ame.sendPutRequestWeb3js(componentAddress,"updateUserName",encodePutParams,account,0);
     console.log("putResult",putResult)
 ```
