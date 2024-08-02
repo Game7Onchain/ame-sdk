@@ -3,8 +3,8 @@ import Ame from "./src/index"
 async function ameTest(){
 
     const account="0xa0ee7a142d267c1f36714e4a8f75612f20a79720"
-    const ameWorldAddress="0xb19b36b1456E65E3A6D514D3F715f204BD59f431"
-    const componentAddress="0xD18E3F31bD50B5c6e4cC740CB9Ca637F6eCC2944"
+    const ameWorldAddress="0xe1Aa25618fA0c7A1CFDab5d6B456af611873b629"
+    const componentAddress="0x6d014319E0F36651997697C98Da594c7Cf235fa4"
 
     //Initialize Ame World
     var ame=new Ame("http://127.0.0.1:8545",ameWorldAddress);
@@ -48,6 +48,7 @@ async function ameTest(){
     ame.web3.eth.accounts.wallet.add(process.env.PRIVATE_KEY)
     var putResult=await ame.sendPutRequestWeb3js(componentAddress,"updateUserName",encodePutParams,account,0);
     console.log("putResult",putResult)
+
 }
 
 ameTest();

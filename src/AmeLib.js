@@ -86,7 +86,7 @@ class AmeLib {
     const gasPrice = await this.web3.eth.getGasPrice();
     const gas = await componentContract.methods
       .post(_methodName, _requestParams)
-      .estimateGas({ from: _from });
+      .estimateGas({ from: _from , value: _value});
 
     var txResult = await componentContract.methods
       .post(_methodName, _requestParams)
@@ -114,7 +114,7 @@ class AmeLib {
     const gasPrice = await this.web3.eth.getGasPrice();
     const gas = await componentContract.methods
       .put(_methodName, _requestParams)
-      .estimateGas({ from: _from });
+      .estimateGas({ from: _from , value: _value});
 
     var txResult = await componentContract.methods
       .put(_methodName, _requestParams)
